@@ -1,0 +1,15 @@
+aradeid-d2s:
+  forum:
+    discussion_composer:
+      link_placeholder: 'Introduceți adresa URL a paginii sursă'
+      thumbnail_placeholder: 'Introduceți adresa URL a imaginii'
+    discussion_controls:
+      change_link_button: 'Schimbă adresa URL a paginii sursă'
+      change_thumbnail_button: 'Schimbă adresa URL a imaginii'
+      see_details_button: 'Vezi mai mult'
+    change_link_discussion:
+      title: 'Schimbă adresa URL a paginii sursă'
+      submit_button: 'Salvează'
+    change_thumbnail_discussion:
+      title: 'Schimbă adresa URL a imaginii'
+      submit_button: 'Salvează'

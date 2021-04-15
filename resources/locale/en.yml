@@ -1,0 +1,15 @@
+aradeid-d2s:
+  forum:
+    discussion_composer:
+      link_placeholder: 'Insert the URL to the source'
+      thumbnail_placeholder: 'Insert the URL of the thumbnail image'
+    discussion_controls:
+      change_link_button: 'Change source URL'
+      change_thumbnail_button: 'Change thumbnail URL'
+      see_details_button: 'See more'
+    change_link_discussion:
+      title: 'Change source URL'
+      submit_button: 'Submit'
+    change_thumbnail_discussion:
+      title: 'Change thumbnail URL'
+      submit_button: 'Submit'

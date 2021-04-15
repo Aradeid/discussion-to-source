@@ -1,0 +1,38 @@
+{
+  "name": "aradeid/discussion-to-source",
+  "description": "Replaces discussions with sources, adding images and direct links",
+  "keywords": [
+    "flarum"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "require": {
+    "flarum/core": "^0.1.0-beta.8",
+    "flarum/tags": "^0.1.0-beta.8"
+  },
+  "authors": [
+    {
+      "name": "Aradeid",
+      "email": "mcurmei@mail.ru",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Aradeid\\DiscussionToSource\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "DiscussionToSource",
+      "icon": {
+        "name": "",
+        "backgroundColor": "",
+        "color": ""
+      }
+    },
+    "flagrow": {
+      "discuss": ""
+    }
+  }
+}
