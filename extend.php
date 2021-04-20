@@ -16,14 +16,24 @@ use Flarum\Api\Event\Serializing;
 use Flarum\Discussion\Discussion;
 use Flarum\Discussion\Event\Saving;
 use Flarum\Tags\Api\Controller;
+use Flarum\Api\Serializer\ForumSerializer;
 use Aradeid\DiscussionToSource\Listener\AddSourceAttributes;
 use Aradeid\DiscussionToSource\Listener\SaveSourceAttributes;
 use Aradeid\DiscussionToSource\Controllers;
 
 return [
+    // (new Extend\ApiSerializer(ForumSerializer::class))
+    //     ->attributes(Extenders\AddForumAttributes::class),
+    (new Extend\Settings())
+        ->serializeToForum('externalSource.images', 'aradeid-source.external.images', 'boolval', false),
+
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/resources/less/forum.less'),
+
+    (new Extend\Frontend('admin'))
+        ->js(__DIR__.'/js/dist/admin.js')
+        ->css(__DIR__.'/resources/less/admin.less'),
 
     (new Extend\Routes('api'))
         ->get('/sourceTypes', 'sourceTypes.index', Controllers\SourceTypeIndexController::class)

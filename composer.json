@@ -7,13 +7,17 @@
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
-    "flarum/core": "^0.1.0-beta.8",
-    "flarum/tags": "^0.1.0-beta.8"
+    "flarum/core": "^0.1.0-beta.16",
+    "flarum/tags": "^0.1.0-beta.16"
   },
   "authors": [
     {
       "name": "Aradeid",
       "email": "mcurmei@mail.ru",
+      "role": "Developer"
+    },
+    {
+      "name": "BlockCat",
       "role": "Developer"
     }
   ],
@@ -26,13 +30,10 @@
     "flarum-extension": {
       "title": "DiscussionToSource",
       "icon": {
-        "name": "",
-        "backgroundColor": "",
-        "color": ""
+        "name": "fas fa-boxes",
+        "backgroundColor": "#083",
+        "color": "#fff"
       }
-    },
-    "flagrow": {
-      "discuss": ""
     }
   }
 }
