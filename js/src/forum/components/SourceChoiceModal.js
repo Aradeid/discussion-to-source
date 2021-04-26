@@ -1,5 +1,4 @@
 import Modal from "flarum/components/Modal";
-import Button from "flarum/components/Button";
 
 export default class SourceChoiceModal extends Modal {
   oninit(vnode) {
@@ -11,59 +10,44 @@ export default class SourceChoiceModal extends Modal {
   }
 
   title() {
-    // to do -> add app.translator.trans()
-    return 'Source Choice';
+    return app.translator.trans('aradeid-d2s.forum.source_modal_title');
   }
 
   content() {
-    // to do -> slyle div with buttons
-    return (
+    return [
       m('.Modal-body',
         m('.Form.Form--centered',
           m('.Form-group',
-            Button.component({
-              className: "Button Button--primary",
-              type: "button",
+            m('.choiceBox', {
               onclick: this.onsubmit.bind(this, 1),
             },
-            'Choice - 1'
-            ),
-            Button.component({
-              className: "Button Button--primary",
-              type: "button",
-              onclick: this.onsubmit.bind(this, 1),
+              m('span', app.translator.trans('aradeid-d2s.forum.source_modal_basic')),
+              m('p', app.translator.trans('aradeid-d2s.forum.source_modal_basic_help_text'))
+            )
+          ),
+          m('.Form-group',
+            m('.choiceBox', {
+              onclick: this.onsubmit.bind(this, 2),
             },
-            'Choice - 1'
-            ),
-            Button.component({
-              className: "Button Button--primary",
-              type: "button",
-              onclick: this.onsubmit.bind(this, 1),
+              m('span', app.translator.trans('aradeid-d2s.forum.source_modal_external')),
+              m('p', app.translator.trans('aradeid-d2s.forum.source_modal_external_help_text'))
+            )
+          ),
+          m('.Form-group',
+            m('.choiceBox', {
+              onclick: this.onsubmit.bind(this, 3),
             },
-            'Choice - 1'
-            ),
-            Button.component({
-              className: "Button Button--primary",
-              type: "button",
-              onclick: this.onsubmit.bind(this, 1),
-            },
-            'Choice - 1'
-            ),
-            Button.component({
-              className: "Button Button--primary",
-              type: "button",
-              onclick: this.onsubmit.bind(this, 1),
-            },
-            'Choice - 1'
-            ),
-          )
+              m('span', app.translator.trans('aradeid-d2s.forum.source_modal_complex')),
+              m('p', app.translator.trans('aradeid-d2s.forum.source_modal_complex_help_text'))
+            )
+          ),
         )
       )
-    );
+    ];
   }
 
   onsubmit(value, e) {
-    this.attrs.onsubmit(value);
     app.modal.close();
+    this.attrs.onsubmit(value);
   }
 }

@@ -17,7 +17,7 @@ return [
         }
     },
     'down' => function (Builder $schema) {
-        $schema->table('users', function (Blueprint $table) use ($schema) {
+        $schema->table('discussions', function (Blueprint $table) use ($schema) {
             $table->dropColumn('thumbnail');
             $table->dropColumn('link');
         });

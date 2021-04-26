@@ -132,9 +132,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
 /* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
 /* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
-/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
-
 
 
 
@@ -156,38 +153,22 @@ var SourceChoiceModal = /*#__PURE__*/function (_Modal) {
   };
 
   _proto.title = function title() {
-    // to do -> add app.translator.trans()
-    return 'Source Choice';
+    return app.translator.trans('aradeid-d2s.forum.source_modal_title');
   };
 
   _proto.content = function content() {
-    // to do -> slyle div with buttons
-    return m('.Modal-body', m('.Form.Form--centered', m('.Form-group', flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
-      className: "Button Button--primary",
-      type: "button",
+    return [m('.Modal-body', m('.Form.Form--centered', m('.Form-group', m('.choiceBox', {
       onclick: this.onsubmit.bind(this, 1)
-    }, 'Choice - 1'), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
-      className: "Button Button--primary",
-      type: "button",
-      onclick: this.onsubmit.bind(this, 1)
-    }, 'Choice - 1'), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
-      className: "Button Button--primary",
-      type: "button",
-      onclick: this.onsubmit.bind(this, 1)
-    }, 'Choice - 1'), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
-      className: "Button Button--primary",
-      type: "button",
-      onclick: this.onsubmit.bind(this, 1)
-    }, 'Choice - 1'), flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
-      className: "Button Button--primary",
-      type: "button",
-      onclick: this.onsubmit.bind(this, 1)
-    }, 'Choice - 1'))));
+    }, m('span', app.translator.trans('aradeid-d2s.forum.source_modal_basic')), m('p', app.translator.trans('aradeid-d2s.forum.source_modal_basic_help_text')))), m('.Form-group', m('.choiceBox', {
+      onclick: this.onsubmit.bind(this, 2)
+    }, m('span', app.translator.trans('aradeid-d2s.forum.source_modal_external')), m('p', app.translator.trans('aradeid-d2s.forum.source_modal_external_help_text')))), m('.Form-group', m('.choiceBox', {
+      onclick: this.onsubmit.bind(this, 3)
+    }, m('span', app.translator.trans('aradeid-d2s.forum.source_modal_complex')), m('p', app.translator.trans('aradeid-d2s.forum.source_modal_complex_help_text'))))))];
   };
 
   _proto.onsubmit = function onsubmit(value, e) {
-    this.attrs.onsubmit(value);
     app.modal.close();
+    this.attrs.onsubmit(value);
   };
 
   return SourceChoiceModal;
@@ -252,17 +233,6 @@ app.initializers.add('aradeid/discussion-to-source', function () {
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['common/extend'];
-
-/***/ }),
-
-/***/ "flarum/components/Button":
-/*!**********************************************************!*\
-  !*** external "flarum.core.compat['components/Button']" ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = flarum.core.compat['components/Button'];
 
 /***/ }),
 

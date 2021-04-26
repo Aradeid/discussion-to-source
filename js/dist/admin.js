@@ -138,6 +138,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/saveSettings */ "flarum/utils/saveSettings");
+/* harmony import */ var flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -156,57 +159,35 @@ var DiscussionToSourceSettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   _proto.oninit = function oninit(vnode) {
     _ExtensionPage.prototype.oninit.call(this, vnode);
 
-    this.externalOptions = Object.entries(flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.forum.attribute('aradeid-source.external'));
-    this.complexOptions = Object.entries(flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.forum.attribute('aradeid-source.complex'));
+    this.externalOptions = Object.entries(JSON.parse(flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.data.settings["aradeid-d2s.external_source"] || null));
+    this.complexOptions = Object.entries(JSON.parse(flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.data.settings["aradeid-d2s.complex_source"] || null));
     this.modified = false;
-    this.loading = false;
   };
 
   _proto.content = function content() {
     var _this = this;
 
-    // console.log(app.forum.data.attributes);
-    // console.log(this.complexOptions);
     return m('.ExtensionPage-settings', [m('.container', [m('Form', {
       onsubmit: this.onsubmit.bind(this)
-    }, [// Basic Source
-    m('.Form-group', [m('label', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.basic_source_title')), m('.helpText', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.basic_source_help_text')), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_title'))), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_description'))), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_tags')))]), // External Source
-    m('.Form-group', [m('label', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.external_source_title')), m('.helpText', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.external_source_help_text')), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_title'))), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_description'))), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_tags'))), this.externalOptions.map(function (option) {
+    }, [m('.Source-display', [// External Source
+    m('.Form-group', [m('label', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.external_source_title')), m('.helpText', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.external_source_help_text')), this.externalOptions.map(function (option) {
       return flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-        state: option[1],
-        onchange: function onchange(state) {
-          state ? option[1] = true : option[1] = false;
+        state: option[1] || false,
+        onchange: function onchange() {
+          option[1] ^= true;
           _this.modified = true;
         }
       }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans("aradeid-d2s.admin.settings.option_" + option[0])));
     })]), // Complex Source
-    m('.Form-group', [m('label', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.complex_source_title')), m('.helpText', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.complex_source_help_text')), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_title'))), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_description'))), flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      state: true
-    }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.option_tags'))), this.complexOptions.map(function (option) {
+    m('.Form-group', [m('label', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.complex_source_title')), m('.helpText', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans('aradeid-d2s.admin.settings.complex_source_help_text')), this.complexOptions.map(function (option) {
       return flarum_components_Switch__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-        state: option[1],
-        onchange: function onchange(state) {
-          state ? option[1] = true : option[1] = false;
+        state: option[1] || false,
+        onchange: function onchange() {
+          option[1] ^= true;
           _this.modified = true;
         }
       }, m('li', flarum_app__WEBPACK_IMPORTED_MODULE_2___default.a.translator.trans("aradeid-d2s.admin.settings.option_" + option[0])));
-    })]), flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a.component({
+    })])]), flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a.component({
       type: 'submit',
       className: 'Button Button--primary',
       loading: this.loading,
@@ -215,15 +196,11 @@ var DiscussionToSourceSettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   };
 
   _proto.onsubmit = function onsubmit(e) {
-    this.loading = true; // Save external options
+    var _saveSettings;
 
-    this.externalOptions.map(function (option) {
-      eval("app.forum.attribute('aradeid-source.external')" + option[0] + " = " + option[1]);
-    }); // Save complex options
-
-    this.complexOptions.map(function (option) {
-      eval("app.forum.attribute('aradeid-source.complex')." + option[0] + " = " + option[1]);
-    });
+    e.preventDefault();
+    this.loading = true;
+    flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_5___default()((_saveSettings = {}, _saveSettings["aradeid-d2s.external_source"] = JSON.stringify(Object.fromEntries(this.externalOptions)), _saveSettings["aradeid-d2s.complex_source"] = JSON.stringify(Object.fromEntries(this.complexOptions)), _saveSettings));
     this.loading = false;
     this.modified = false;
   };
@@ -245,17 +222,9 @@ var DiscussionToSourceSettingsPage = /*#__PURE__*/function (_ExtensionPage) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_DiscussionToSourceSettingsPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DiscussionToSourceSettingsPage */ "./src/admin/components/DiscussionToSourceSettingsPage.js");
-/* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/app */ "flarum/app");
-/* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_app__WEBPACK_IMPORTED_MODULE_1__);
 
-
-flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('aradeid/discussion-to-source', function () {
-  // app.extensionData.for('aradeid-discussion-to-source').registerPage(DiscussionToSourceSettingsPage);
-  flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.extensionData["for"]('aradeid-discussion-to-source').registerSetting({
-    setting: 'aradeid-source.external.images',
-    type: 'boolean',
-    label: 'Images'
-  }); // console.log(app);
+app.initializers.add('aradeid/discussion-to-source', function () {
+  app.extensionData["for"]('aradeid-discussion-to-source').registerPage(_components_DiscussionToSourceSettingsPage__WEBPACK_IMPORTED_MODULE_0__["default"]);
 });
 
 /***/ }),
@@ -301,6 +270,17 @@ module.exports = flarum.core.compat['components/Button'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['components/Switch'];
+
+/***/ }),
+
+/***/ "flarum/utils/saveSettings":
+/*!***********************************************************!*\
+  !*** external "flarum.core.compat['utils/saveSettings']" ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['utils/saveSettings'];
 
 /***/ })
 

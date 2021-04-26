@@ -22,10 +22,9 @@ use Aradeid\DiscussionToSource\Listener\SaveSourceAttributes;
 use Aradeid\DiscussionToSource\Controllers;
 
 return [
-    // (new Extend\ApiSerializer(ForumSerializer::class))
-    //     ->attributes(Extenders\AddForumAttributes::class),
     (new Extend\Settings())
-        ->serializeToForum('externalSource.images', 'aradeid-source.external.images', 'boolval', false),
+        ->serializeToForum('externalSource', 'aradeid-d2s.external_source')
+        ->serializeToForum('complexSource', 'aradeid-d2s.complex_source'),
 
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
