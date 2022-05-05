@@ -33,6 +33,8 @@ aradeid-d2s:
     source_modal_external_help_text: 'For this source should select Title, Description, Tags and more'
     source_modal_complex: 'Complex Source'
     source_modal_complex_help_text: 'For this source should select Title, Description, Tags and more'
+    composer:
+      source_items: 'Additional items'
 
     discussion_composer:
       link_placeholder: 'Insert the URL to the source'
